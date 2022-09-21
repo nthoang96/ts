@@ -35,7 +35,20 @@ function add(a: Combinable, b: Combinable) {
   return a + b;
 }
 
+const result = add("Max", "Test");
 
+
+// Optional Chaining
+const fetchUserData = {
+  id: "u1",
+  name: "Max",
+//   job: { title: "CEO", desc: "My own company" },
+};
+
+console.log(fetchUserData?.job?.title);
+
+
+//
 type UnknownEmployee = Employee | Admin;
 
 function printEmployeeInformation(emp: UnknownEmployee) {
