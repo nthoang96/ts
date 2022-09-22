@@ -1,66 +1,62 @@
 "use strict";
-const e1 = {
-    name: "Max",
-    privileges: ["create-server"],
-    startDate: new Date(),
-};
-function add(a, b) {
-    if (typeof a === "string" || typeof b === "string") {
-        return a.toString() + b.toString();
-    }
-    return a + b;
+const names = [];
+const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("This is done!");
+    }, 2000);
+});
+promise.then((data) => {
+    data.split(" ");
+});
+function merge(objA, objB) {
+    return Object.assign(objA, objB);
 }
-function printEmployeeInformation(emp) {
-    console.log("Name: " + emp.name);
-    if ("privileges" in emp) {
-        console.log("Privileges: " + emp.privileges);
+const mergeObj = merge({ name: "Max" }, { age: 1 });
+mergeObj.age;
+function countAndPrint(element) {
+    let descriptionText = "Got no value.";
+    if (element.length === 1) {
+        descriptionText = "Got 1 element.";
     }
-    if ("startDate" in emp) {
-        console.log("Privileges: " + emp.startDate);
+    else if (element.length > 1) {
+        descriptionText = "Got " + element.length + " elements.";
+    }
+    return [element, descriptionText];
+}
+console.log(countAndPrint("Hi there!"));
+function extractAndConvert(obj, key) {
+    return "Value: " + obj[key];
+}
+console.log(extractAndConvert({ name: "Max" }, "name"));
+class DataStorage {
+    constructor() {
+        this.data = [];
+    }
+    addItem(item) {
+        this.data.push(item);
+    }
+    removeItem(item) {
+        if (this.data.indexOf(item) === -1) {
+            return;
+        }
+        this.data.splice(this.data.indexOf(item), 1);
+    }
+    getItems() {
+        return [...this.data];
     }
 }
-printEmployeeInformation(e1);
-class Car {
-    drive() {
-        console.log("Driving....");
-    }
+const textStorage = new DataStorage();
+textStorage.addItem("Max");
+textStorage.addItem("Manu");
+textStorage.removeItem("Max");
+console.log(textStorage.getItems());
+const numberStorage = new DataStorage();
+function createCourseGoal(title, description, date) {
+    let courseGoal = {};
+    courseGoal.title = title;
+    courseGoal.description = description;
+    courseGoal.completeUntil = date;
+    return courseGoal;
 }
-class Truck {
-    drive() {
-        console.log("Driving a truck....");
-    }
-    loadCargo(amount) {
-        console.log("Loading cargo..." + amount);
-    }
-}
-const v1 = new Car();
-const v2 = new Truck();
-function useVehicle(vehicle) {
-    vehicle.drive();
-    if (vehicle instanceof Truck) {
-        vehicle.loadCargo(1000);
-    }
-}
-useVehicle(v1);
-useVehicle(v2);
-function moveAnimal(animal) {
-    let speed;
-    switch (animal.type) {
-        case "bird":
-            speed = animal.flyingSpeed;
-            break;
-        case "horse":
-            speed = animal.runningSpeed;
-            break;
-    }
-    console.log("Moving with speed: " + speed);
-}
-moveAnimal({ type: "bird", flyingSpeed: 10 });
-const paragraph = document.querySelector("p");
-const userInputElement = document.getElementById("user-input");
-userInputElement.value = "Hi there!";
-const errorBag = {
-    email: "Not a valid email!",
-    username: "Must start with a capital character!",
-};
+const namesReadOnly = ["Max", "Anna"];
 //# sourceMappingURL=app.js.map

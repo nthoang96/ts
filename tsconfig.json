@@ -104,6 +104,7 @@
     "learn-types",
     "ts-compiler",
     "next-gen-js-ts",
-    "classes-interface"
+    "classes-interface",
+    "advance-types"
   ]
 }
